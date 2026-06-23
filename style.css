@@ -1,0 +1,334 @@
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #39ff14;
+    --neon-red: #ff3131;
+    --neon-yellow: #fce803;
+    --neon-orange: #ff5f1f; /* Laranja Neon para o Menu */
+    --bg-dark: #020205;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #e0e0e0;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.03) 0%, transparent 70%);
+}
+
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+/* Estilos Base do Jogo */
+.neon-box {
+    border: 2px solid var(--neon-blue);
+    background: rgba(0, 0, 0, 0.9);
+    position: relative;
+    z-index: 10;
+    /* Ativa a transição infinita de 10 segundos pelas cores */
+    animation: rgb-border-cycle 10s linear infinite; 
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    transform: translateX(5px);
+}
+
+.option-btn.selected {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink);
+    background: rgba(255, 0, 255, 0.05);
+}
+
+.option-btn.correct {
+    border-color: var(--neon-green) !important;
+    box-shadow: 0 0 25px var(--neon-green) !important;
+    background: rgba(57, 255, 20, 0.15) !important;
+    color: var(--neon-green);
+}
+
+.option-btn.wrong {
+    border-color: var(--neon-red) !important;
+    box-shadow: 0 0 25px var(--neon-red) !important;
+    background: rgba(255, 49, 49, 0.15) !important;
+    color: var(--neon-red);
+}
+
+.life-heart {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 5px var(--neon-red));
+}
+
+.life-off {
+    opacity: 0.1;
+    filter: grayscale(1) blur(1px);
+    transform: scale(0.6) rotate(20deg);
+}
+
+.btn-neon {
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-neon:hover {
+    background: var(--neon-blue);
+    color: black;
+    box-shadow: 0 0 30px var(--neon-blue);
+}
+
+.timer-pulse {
+    animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+    0% { text-shadow: 0 0 5px var(--neon-red); color: white; }
+    50% { text-shadow: 0 0 20px var(--neon-red); color: var(--neon-red); }
+    100% { text-shadow: 0 0 5px var(--neon-red); color: white; }
+}
+
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(1000%); }
+}
+.scanline {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.1), transparent);
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+}
+
+/* --- ESTILOS DO MENU HAMBURGER & SIDEBAR --- */
+#hamburger-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+#hamburger-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ... resto do seu código ... */
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: white; 
+    border-radius: 2px;
+    /* Aumentamos de 0.3s para 0.6s para ficar mais fluido */
+    transition: 0.3s ease-in-out;
+}
+
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 320px;
+    max-width: 100vw;
+    height: 100vh;
+    background-color: rgba(2, 2, 5, 0.98);
+    border-right: 2px solid var(--neon-orange);
+    box-shadow: 4px 0 15px rgba(255, 95, 31, 0.2); 
+    z-index: 90;
+    /* Alteramos o tempo para 0.8s e suavizamos o movimento (ease) */
+    transition: left 0.08s cubic-bezier(0.25, 1, 0.5, 1);
+    padding: 80px 20px 20px 20px;
+    overflow-y: auto;
+}
+
+#side-menu.open {
+    left: 0;
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid var(--neon-orange);
+    color: var(--neon-orange);
+    padding: 12px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 5px;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--neon-orange);
+    color: var(--bg-dark);
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+    color: white; 
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ANIMAÇÃO BORDAS RGB --- */
+@keyframes rgb-border-cycle {
+    0% {
+        border-color: #00f3ff;
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    }
+    25% {
+        border-color: #ff00ff;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.2), inset 0 0 10px rgba(255, 0, 255, 0.1);
+    }
+    50% {
+        border-color: #39ff14;
+        box-shadow: 0 0 20px rgba(57, 255, 20, 0.2), inset 0 0 10px rgba(57, 255, 20, 0.1);
+    }
+    75% {
+        border-color: #fce803;
+        box-shadow: 0 0 20px rgba(252, 232, 3, 0.2), inset 0 0 10px rgba(252, 232, 3, 0.1);
+    }
+    100% {
+        border-color: #00f3ff;
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+    }
+}
+
+/* --- FUNDO ESTRELADO ANIMADO --- */
+.stars-layer-1, .stars-layer-2, .stars-layer-3 {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    pointer-events: none; /* Garante que as estrelas não bloqueiem os seus cliques */
+}
+
+/* Camada 1: Estrelas menores e mais rápidas */
+.stars-layer-1 {
+    background: 
+        radial-gradient(1px 1px at 25px 5px, white, transparent),
+        radial-gradient(1.5px 1.5px at 50px 25px, white, transparent),
+        radial-gradient(1px 1px at 125px 20px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 150px 150px, white, transparent),
+        radial-gradient(2px 2px at 225px 75px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 275px 225px, white, transparent),
+        radial-gradient(1.5px 1.5px at 100px 250px, white, transparent),
+        radial-gradient(1px 1px at 10px 150px, white, transparent),
+        radial-gradient(1.5px 1.5px at 80px 100px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 300px 280px, white, transparent);
+    background-size: 350px 350px;
+    animation: twinkle 4s infinite alternate;
+    z-index: -1;
+}
+
+/* Camada 2: Estrelas médias com toques de cor e ritmo diferente */
+.stars-layer-2 {
+    background: 
+        radial-gradient(1px 1px at 75px 125px, white, transparent),
+        radial-gradient(2px 2px at 150px 50px, rgba(0, 243, 255, 0.8), transparent), /* Estrela azulada */
+        radial-gradient(1.5px 1.5px at 225px 175px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 275px 125px, white, transparent),
+        radial-gradient(1.5px 1.5px at 325px 25px, rgba(255, 0, 255, 0.6), transparent), /* Estrela rosada */
+        radial-gradient(1px 1px at 50px 275px, white, transparent),
+        radial-gradient(1.5px 1.5px at 175px 225px, white, transparent),
+        radial-gradient(1px 1px at 300px 300px, white, transparent);
+    background-size: 450px 450px;
+    animation: twinkle 6s infinite alternate-reverse;
+    z-index: -2;
+}
+
+/* Camada 3: Estrelas maiores e mais lentas, dando sensação de profundidade */
+.stars-layer-3 {
+    background: 
+        radial-gradient(2.5px 2.5px at 200px 200px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1.5px 1.5px at 350px 100px, white, transparent),
+        radial-gradient(2px 2px at 100px 350px, white, transparent),
+        radial-gradient(1.5px 1.5px at 250px 300px, rgba(255,255,255,0.7), transparent);
+    background-size: 550px 550px;
+    animation: twinkle-slow 8s infinite alternate;
+    z-index: -3;
+}
+
+/* Animações de brilho (Opacidade) */
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+@keyframes twinkle-slow {
+    0% { opacity: 0.1; transform: scale(0.95); }
+    100% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* --- NEBULOSA / VIA LÁCTEA (CSS PURO) --- */
+.nebula-bg {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    z-index: -4; /* Fica atrás das estrelas */
+    pointer-events: none;
+    
+    /* Aumentei bastante a opacidade (de 0.08 para 0.25, etc) para ficar visível */
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 60%, rgba(57, 255, 20, 0.15) 0%, transparent 60%);
+        
+    /* Reduzi um pouco o blur para a nuvem não "sumir" */
+    filter: blur(40px); 
+    
+    /* Deixei a animação um pouco mais rápida para você notar o movimento */
+    animation: nebula-drift 15s infinite alternate ease-in-out;
+}
+
+@keyframes nebula-drift {
+    0% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.5; 
+    }
+    100% { 
+        transform: scale(1.2) rotate(3deg); 
+        opacity: 1; 
+    }
+}
