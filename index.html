@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sci-Quiz: Terminal de Elite</title>
+    <!-- Tailwind e Fontes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Arquivo CSS Externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="nebula-bg"></div>
 
+    <!-- FUNDOS ANIMADOS -->
+    <div class="nebula-bg"></div>
     <div class="stars-layer-1"></div>
     <div class="stars-layer-2"></div>
     <div class="stars-layer-3"></div>
 
+    <!-- MÚSICA DE FUNDO ESPACIAL -->
     <audio id="bg-music" loop>
-    <source src="musica-fundo.ogg" type="audio/ogg">
-</audio>
+        <source src="musica-fundo.ogg" type="audio/ogg">
+    </audio>
 
+    <!-- BOTÃO HAMBURGER -->
     <button id="hamburger-btn" onclick="toggleMenu()">
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
         <div class="hamburger-line"></div>
     </button>
 
+    <!-- MENU LATERAL -->
     <div id="side-menu">
         <h2 class="font-orbitron text-2xl mb-6 text-center tracking-widest" style="color: var(--neon-orange);">MENU DO SISTEMA</h2>
         
@@ -32,17 +38,19 @@
         <button class="tab-btn" onclick="openTab(event, 'tab-dev')">Desenvolvedor</button>
         <button class="tab-btn" onclick="openTab(event, 'tab-contatos')">Contatos</button>
 
+        <!-- ABA: REGRAS -->
         <div id="tab-regras" class="tab-content active">
             <h3 class="font-orbitron text-lg mb-3" style="color: var(--neon-orange);">Regras de Acesso</h3>
             <ul class="list-disc pl-5 space-y-2 opacity-90">
                 <li>Responda a 5 perguntas de Ciências e Programação por nível.</li>
                 <li>Acerte pelo menos 3 para não ser bloqueado pelo sistema.</li>
                 <li>Errar uma questão subtrai 1 vida. Zero vidas = Game Over.</li>
-                <li><strong>Oportunidade Extra:</strong> Se perder vidas, uma 6ª questão de 10s será liberada. Acertar recupera 1 vida. Errar a extra não penaliza, apenas prossegue o jogo.</li>
+                <li><strong>Oportunidade Extra:</strong> Se perder vidas, uma 6ª questão de 10s será liberada. Acertar recupera 1 vida. Errar a extra não penaliza.</li>
                 <li>Domine até o <strong>Nível 20</strong> para vencer.</li>
             </ul>
         </div>
 
+        <!-- ABA: DESENVOLVEDOR -->
         <div id="tab-dev" class="tab-content">
             <h3 class="font-orbitron text-lg mb-3" style="color: var(--neon-orange);">Israel Tech</h3>
             <p class="opacity-90">
@@ -51,20 +59,23 @@
             </p>
         </div>
 
+        <!-- ABA: CONTATOS -->
         <div id="tab-contatos" class="tab-content">
             <h3 class="font-orbitron text-lg mb-3" style="color: var(--neon-orange);">Central de Comunicação</h3>
             <p class="mb-4 opacity-90">Estabeleça conexão segura com a base da Israel Tech:</p>
             <ul class="space-y-3 opacity-90">
-                <li><strong style="color: var(--neon-orange);">Email:</strong> rodriguesisrael.30@proton.me</li>
-                <li><strong style="color: var(--neon-orange);">GitHub:</strong> github.com/Rael-developer</li>
-                <li><strong style="color: var(--neon-orange);">LinkedIn:</strong> https://www.linkedin.com/in/israel-rodrigues-a90aa2368/</li>
+                <li><strong style="color: var(--neon-orange);">Email:</strong> terminal@israeltech.com</li>
+                <li><strong style="color: var(--neon-orange);">GitHub:</strong> github.com/israeltech</li>
+                <li><strong style="color: var(--neon-orange);">LinkedIn:</strong> in/israeltech</li>
             </ul>
         </div>
     </div>
 
+    <!-- MOLDURA PRINCIPAL DO JOGO -->
     <div id="game-frame" class="max-w-3xl w-full mx-4 p-8 rounded-3xl neon-box">
         <div class="scanline"></div>
         
+        <!-- BARRA DE STATUS -->
         <div id="ui-header" class="hidden flex justify-between items-center mb-10 border-b border-cyan-900 pb-6">
             <div>
                 <p class="text-[10px] text-cyan-500 tracking-[0.3em] uppercase">Nível</p>
@@ -74,6 +85,7 @@
             <div class="text-center relative">
                 <p class="text-[10px] text-pink-500 tracking-[0.3em] uppercase mb-2">Vidas</p>
                 <div id="lives-box" class="flex gap-3 justify-center"></div>
+                <!-- Display do Timer Oculto por padrão -->
                 <div id="timer-display" class="hidden absolute top-12 left-1/2 transform -translate-x-1/2 text-2xl font-orbitron text-red-500 mt-2">10s</div>
             </div>
 
@@ -83,14 +95,16 @@
             </div>
         </div>
 
+        <!-- ECRÃ INICIAL -->
         <div id="screen-start" class="text-center py-10">
-            <h1 class="text-7xl font-orbitron font-bold mb-4 tracking-tighter">SCI-<span class="text-cyan-400">NET</span></h1>
+            <h1 class="text-7xl font-orbitron font-bold mb-4 tracking-tighter">SCI<span class="text-cyan-400">NET</span></h1>
             <p class="text-cyan-600 tracking-[0.5em] mb-12 uppercase text-sm">Protocolo de Avaliação Científica</p>
             <button onclick="startGame()" class="btn-neon px-16 py-5 rounded-full font-orbitron text-xl">
                 INICIAR SISTEMA
             </button>
         </div>
 
+        <!-- ECRÃ DA QUESTÃO EXTRA (INTRO) -->
         <div id="screen-extra-intro" class="hidden text-center py-10 space-y-6">
             <div class="text-5xl mb-4 text-yellow-400">⚡</div>
             <h2 class="text-3xl font-orbitron font-bold text-yellow-400 uppercase">Oportunidade de Recuperação</h2>
@@ -105,13 +119,15 @@
             </button>
         </div>
 
+        <!-- ECRÃ DO QUESTIONÁRIO -->
         <div id="screen-quiz" class="hidden space-y-8">
             <div class="min-h-[120px] flex items-center justify-center">
                 <h2 id="q-text" class="text-2xl md:text-3xl text-center font-light leading-relaxed">A carregar dados...</h2>
             </div>
             
             <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                </div>
+                <!-- Botões gerados via JS -->
+            </div>
 
             <div class="h-10 flex items-center justify-center">
                 <p id="feedback-txt" class="font-orbitron text-sm uppercase tracking-[0.4em]"></p>
@@ -124,6 +140,7 @@
             </div>
         </div>
 
+        <!-- ECRÃ DE RESULTADO -->
         <div id="screen-end" class="hidden text-center py-10 space-y-8">
             <div id="result-icon" class="text-6xl mb-4"></div>
             <h2 id="result-title" class="text-6xl font-orbitron font-bold">---</h2>
@@ -134,7 +151,14 @@
         </div>
     </div>
 
+    <!-- RODAPÉ: DIREITOS AUTORAIS -->
+    <div class="fixed bottom-4 w-full text-center pointer-events-none z-50">
+        <p class="font-orbitron text-[10px] md:text-xs tracking-[0.3em] text-cyan-600/60 uppercase">
+            Desenvolvido por <span style="color: var(--neon-orange); text-shadow: 0 0 5px var(--neon-orange);">Israel Tech</span> &copy; 2026
+        </p>
+    </div>
+
+    <!-- Arquivo JS Externo -->
     <script src="script.js"></script>
 </body>
 </html>
-

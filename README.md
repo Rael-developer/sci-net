@@ -5,7 +5,7 @@
 ## 🚀 Sobre o Projeto
 O *SCI-NET* é um terminal interativo de perguntas e respostas com temática cyberpunk e espacial. Desenvolvido para testar conhecimentos em Ciências Gerais, Astronomia e Lógica de Programação, o sistema desafia o usuário a provar seu intelecto avançando por 20 níveis de complexidade crescente.
 
-🔗 *[Jogue o SCI-NET aqui!](COLOQUE-SEU-LINK-DO-GITHUB-PAGES-AQUI)*
+🔗 *[Jogue o SCI-NET aqui!](https://rael-developer.github.io/sci-net/)*
 
 ## 🎮 Mecânicas Principais
 * *Sistema de Vidas:* O jogador inicia com 3 vidas. Errar uma questão principal resulta em falha crítica e perda de uma vida.
