@@ -73,7 +73,7 @@ const MASTER_POOL = [
     { q: "Qual o tipo de variável que armazena Verdadeiro ou Falso?", options: ["Integer", "String", "Boolean", "Float"], correct: 2 },
     { q: "Quem descobriu a Lei da Gravidade?", options: ["Einstein", "Galileu", "Newton", "Tesla"], correct: 2 },
     { q: "Símbolo químico do Ouro?", options: ["Ag", "Au", "Gd", "Or"], correct: 1 },
-    { q: "Em HTML, qual tag cria um link?", options: ["<link>", "<a>", "<href>", "<url>"], correct: 1 },
+    { q: "Em HTML, qual tag cria um link?", options: ["< link >", "< a >", "< href >", "< url >"], correct: 1 },
     { q: "A luz viaja a que velocidade aproximada?", options: ["300.000 km/s", "150.000 km/s", "500 km/s", "1.000 km/s"], correct: 0 },
     { q: "O que significa a sigla 'CSS'?", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Coded Simple Styles"], correct: 1 },
     { q: "O que estuda a Termodinâmica?", options: ["Som", "Luz", "Calor", "Eletricidade"], correct: 2 },
