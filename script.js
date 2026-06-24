@@ -75,7 +75,7 @@ const MASTER_POOL = [
     { q: "A luz viaja a que velocidade aproximada?", options: ["300.000 km/s", "150.000 km/s", "500 km/s", "1.000 km/s"], correct: 0 },
     { q: "O que significa a sigla 'CSS'?", options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Coded Simple Styles"], correct: 1 },
     { q: "O que estuda a Termodinâmica?", options: ["Som", "Luz", "Calor", "Eletricidade"], correct: 2 },
-    { q: "Partícula atómica com carga positiva?", options: ["Eletrão", "Protão", "Neutrão", "Fotão"], correct: 1 },
+    { q: "Partícula atómica com carga positiva?", options: ["Elétron", "Próton", "Nêutron", "Fóton"], correct: 1 },
     { q: "Qual o índice do primeiro elemento em um Array na maioria das linguagens?", options: ["1", "0", "-1", "Nulo"], correct: 1 },
     { q: "O que é uma Unidade Astronómica (UA)?", options: ["Distância Terra-Lua", "Distância Terra-Sol", "Tamanho do Sol", "Velocidade da Luz"], correct: 1 },
     { q: "Quem escreveu sobre a Relatividade Geral?", options: ["Planck", "Einstein", "Hawking", "Newton"], correct: 1 },
